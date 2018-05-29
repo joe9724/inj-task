@@ -75,7 +75,7 @@ func GetTaskList (w http.ResponseWriter, req *http.Request) {
 	var response utils.Response
 	//签到,先检查是否已签到
 	var list []model.TaskModel
-	db.Raw("SELECT btk_Task_Set.name,btk_Task_Set.type,btk_Task_Set.value,btk_Task_Set.value_unit,btk_Task_Set.target_id,btk_Task_Set.event_id,DATE_FORMAT(btk_Task.create_time,'%Y-%m-%d %h:%m:%s') as create_time,btk_Task.user_id FROM `btk_Task_Set` left join btk_Task on btk_Task_Set.`name` = btk_Task.`name` and btk_Task.user_id = ?  and to_days(btk_Task.create_time) = to_days(now())",utils.DeUserID(req.URL.Query().Get("euid"))).Find(&list)
+	db.Raw("SELECT btk_Task_Set.icon,btk_Task_Set.name,btk_Task_Set.type,btk_Task_Set.value,btk_Task_Set.value_unit,btk_Task_Set.target_id,btk_Task_Set.event_id,DATE_FORMAT(btk_Task.create_time,'%Y-%m-%d %h:%m:%s') as create_time,btk_Task.user_id FROM `btk_Task_Set` left join btk_Task on btk_Task_Set.`name` = btk_Task.`name` and btk_Task.user_id = ?  and to_days(btk_Task.create_time) = to_days(now())",utils.DeUserID(req.URL.Query().Get("euid"))).Find(&list)
 	response.Data = list
 	response.Msg = msg
 	response.Code = code

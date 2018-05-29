@@ -11,6 +11,7 @@ type TaskModel struct{
 	ValueUnit string `json:"value_unit"`
 	TargetID int64 `json:"target_id"`
 	EventID string `json:"event_id"`
+	Icon string `json:"icon"`
 }
 
 //启动页model
